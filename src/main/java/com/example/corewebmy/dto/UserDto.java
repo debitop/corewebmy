@@ -15,7 +15,7 @@ public class UserDto {
     @JsonProperty(value = "lastName")
     private String lastName;
 
-    interface UserDtoManager {
+    public static interface UserDtoManager {
         static UserDto toUserDto(User user) {
             return UserDto.of()
                     .id(user.getId())
