@@ -12,11 +12,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class UserStorage {
 
-    public static final Map<Long, User> USERS_POOL = new ConcurrentHashMap<>();
-    public static final AtomicInteger ID_SEQUENCE = new AtomicInteger(1);
+    public static Map<Long, User> USERS_POOL = new ConcurrentHashMap<>();
+    public static AtomicInteger ID_SEQUENCE = new AtomicInteger(1);
 
     public User save(User user) {
-        Optional<User> persistedUser = findUserByUsername(user.getUserName());
+        Optional<User> persistedUser = findUserByUsername(user.getUserName());//Optional - оборачивает NPE
         if (persistedUser.isPresent()) {
             throw new UserAlreadyExistException();
         }
